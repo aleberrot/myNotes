@@ -6,6 +6,8 @@ Register
     <h1>Register</h1>
     <div class="container">
         <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+
             {{ form.first_name.label }}<br>
             {{ form.first_name(class="form-control", placeholder="First Name") }}<br>
 
