@@ -3,7 +3,7 @@ This module is for creating the forms classes
 '''
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Email
+from wtforms.validators import DataRequired, EqualTo, Email, Length
 
 class LoginForm(FlaskForm):
     '''
@@ -18,9 +18,9 @@ class RegisterForm(FlaskForm):
     '''
     This let register users
     '''
-    first_name: str = StringField('First Name', validators=[DataRequired()])
-    last_name: str = StringField('Last Name', validators=[DataRequired()])
+    first_name: str = StringField('First Name', validators=[DataRequired(), Length(min=4, max=45)])
+    last_name: str = StringField('Last Name', validators=[DataRequired(), Length(min=4, max=48)])
     email: str = StringField('E-mail', validators=[DataRequired(), Email()])
-    password: str = StringField('Password', validators=[DataRequired()])
-    password2: str = StringField('Confirm Password', validators=[DataRequired(), EqualTo(password)])
+    password: str = StringField('Password', validators=[DataRequired(), Length(min=8)])
+    password2: str = StringField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Create Account')
