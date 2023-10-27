@@ -24,3 +24,10 @@ class RegisterForm(FlaskForm):
     password: str = StringField('Password', validators=[DataRequired(), Length(min=8)])
     password2: str = StringField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Create Account')
+
+class NoteForm(FlaskForm):
+    '''
+    Lets the user creates notes 
+    '''
+    note_content: str = StringField('Note Content', validators=[DataRequired(), Length(min=1)])
+    submit = SubmitField('Create Note')

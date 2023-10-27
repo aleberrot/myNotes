@@ -17,6 +17,10 @@ def login():
     if form.validate_on_submit():
         # Comprobates if the user exists
         return redirect(url_for('views.index'))
+    
+    if form.errors != {}:
+        for error_message in form.errors.values():
+            flash(f'This is the current error: {error_message}', category='danger')
     return render_template('login.html', form=form)
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -34,4 +38,5 @@ def register():
 def logout():
     '''
     '''
-    return 'Logout' 
+    # Logout the user and redirects it to the register
+    return redirect(url_for('auth.register'))

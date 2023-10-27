@@ -5,4 +5,17 @@ Home
 
 {% block content %}
     <h1>Home</h1>
+    <article>
+        <div>
+
+        </div>
+    </article>
+    <div class="container">
+        <form action="" method="post" novalidate>
+            {{ form.note_content.label }}
+            {{ form.note_content(class="form-control", placeholder="Your note's content") }}<br>
+
+            {{ form.submit(class="form-control") }}
+        </form>
+    </div>
 {% endblock %}
