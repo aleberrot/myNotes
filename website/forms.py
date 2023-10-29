@@ -3,7 +3,8 @@ This module is for creating the forms classes
 '''
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Email, Length
+from wtforms.validators import DataRequired, EqualTo, Email, Length, ValidationError
+from .models import User
 
 class LoginForm(FlaskForm):
     '''
@@ -18,6 +19,15 @@ class RegisterForm(FlaskForm):
     '''
     This let register users
     '''
+    def validate_email(self, email_to_check: str):
+        '''
+        This method checks if there is an user with the given email and raises an error if it is
+        '''
+        email = User.query.filter_by(email=email_to_check.data).first()
+        if email:
+            raise ValidationError('Already a user with that E-mail! try a new one')
+        return True
+
     first_name: str = StringField('First Name', validators=[DataRequired(), Length(min=4, max=45)])
     last_name: str = StringField('Last Name', validators=[DataRequired(), Length(min=4, max=48)])
     email: str = StringField('E-mail', validators=[DataRequired(), Email()])
