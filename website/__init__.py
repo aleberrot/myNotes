@@ -9,6 +9,7 @@ db = SQLAlchemy()
 bcrypt: Bcrypt = Bcrypt(app)
 DB_NAME = 'database.db'
 login_manager = LoginManager(app)
+login_manager.login_message_category = 'info'
 
 def create_app():
     '''
@@ -23,6 +24,7 @@ def create_app():
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    login_manager.login_view = 'auth.login'
 
     return app
 

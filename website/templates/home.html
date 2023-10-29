@@ -4,18 +4,21 @@ Home
 {% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
-    <article>
-        <div>
-
-        </div>
-    </article>
+    <article class="container">
+            <h1>Hey {{ current_user.first_name }}! Here are your notes </h1>
+            <ul>
+                {% for note in current_user.notes %}
+                <li>{{ note.content }}</li>
+                {% endfor %}    
+            </ul>
     <div class="container">
         <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
             {{ form.note_content.label }}
             {{ form.note_content(class="form-control", placeholder="Your note's content") }}<br>
 
             {{ form.submit(class="form-control") }}
         </form>
     </div>
+</article>
 {% endblock %}

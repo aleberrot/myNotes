@@ -4,8 +4,8 @@ Creating the blueprints for the authtentication routes
 from flask import Blueprint, render_template, url_for, redirect, flash
 from . import db # Importing the database
 from .forms import LoginForm, RegisterForm # Importing the forms classes
-from .models import User, Note # Importing our db models 
-from flask_login import login_user
+from .models import User # Importing our db models 
+from flask_login import login_user, logout_user
 
 auth: Blueprint = Blueprint('auth', __name__)
 
@@ -51,6 +51,9 @@ def register():
 @auth.route('/logout')
 def logout():
     '''
+    Let the users logout from the page
     '''
     # Logout the user and redirects it to the register
+    logout_user()
+    flash('You have been logged out', category='info')
     return redirect(url_for('auth.register'))
