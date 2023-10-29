@@ -37,7 +37,7 @@ def register():
     '''
     form: RegisterForm = RegisterForm()
     if form.validate_on_submit(): # Never forget parenthesis
-        new_user: User = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password=form.password.data)
+        new_user: User = User(first_name=form.first_name.data, last_name=form.last_name.data, email=form.email.data, password_hash=form.password.data)
         db.session.add(new_user)
         db.session.commit() 
         flash('User created successfully', category='success')
