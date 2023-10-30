@@ -44,7 +44,7 @@ def register():
         return redirect(url_for('auth.login'))
     if form.errors != {}:
         for error_message in form.errors.values():
-            flash(f'This is the current error: {error_message}', category='danger')
+            flash(f'Error: {error_message}', category='danger')
 
     return render_template('register.html', form=form)
 

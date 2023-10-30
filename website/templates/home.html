@@ -13,6 +13,9 @@ Home
                 <li class="list-group-item">
                     <input class="form-check-input me-1" type="checkbox" value="">
                     {{ note.content }}
+                    <a href="{{ url_for('views.delete', id=note.id)}}" class=" m1-2 mb-1 close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
                 </li>
                 {% endfor %}    
             </ul>
