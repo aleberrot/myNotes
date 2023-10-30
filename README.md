@@ -1,6 +1,6 @@
 # 📝 My notes app
 
-This is a basic notes application using Python, Flask and Bootstap. I uses a *database* for storing the data from the users and the user's notes
+This is a basic notes application using Python, Flask and Bootstrap. It uses a *database* for storing the data from the users and the user's notes
 
 ### **Executing the app**
 

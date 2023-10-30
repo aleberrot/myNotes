@@ -16,8 +16,7 @@ def create_app():
     This function creates de app
     '''
     app.config['SECRET_KEY'] = 'secret'
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(DB_NAME) local
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABSE_URL')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(DB_NAME) 
     db.init_app(app)
 
     from .views import views
