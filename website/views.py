@@ -24,4 +24,3 @@ def index():
     else:
         flash('Make sure that your note has at least one character', category='warning')
     return render_template('home.html', form=form)
-

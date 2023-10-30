@@ -2,7 +2,7 @@
 This module is for creating the forms classes
 '''
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, EqualTo, Email, Length, ValidationError
 from .models import User
 
@@ -39,5 +39,5 @@ class NoteForm(FlaskForm):
     '''
     Lets the user creates notes 
     '''
-    note_content: str = StringField('Note Content', validators=[DataRequired(), Length(min=1)])
+    note_content: str = TextAreaField('Note Content', validators=[DataRequired(), Length(min=1)])
     submit = SubmitField('Create Note')
