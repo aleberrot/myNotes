@@ -4,26 +4,28 @@ Home
 {% endblock %}
 
 {% block content %}
-<div class="container text-center">
+<div class="container mt-5">
     <div class="row">
         <div class="col-9 align-items-start">
             <h1>Hey {{ current_user.first_name }}! Here are your notes </h1>
             <ul class="list-group">
-                {% for note in current_user.notes %}
-                <li class="list-group-item">
-                    <input class="form-check-input me-1" type="checkbox" value="">
-                    {{ note.content }}
-                    <a href="{{ url_for('views.delete', id=note.id)}}" class=" m1-2 mb-1 close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </li>
-                {% endfor %}    
+                {% if current_user.notes|length < 1 %}
+                    <h3>You do not have any note, start writing one</h3>
+                {% else %}
+                    {% for note in current_user.notes %}
+                    <li class="list-group-item">
+                        {{ note.content }}
+                        <a href="{{ url_for('views.delete', id=note.id)}}" class=" m1-2 mb-1 close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </li>
+                    {% endfor %}    
+                {% endif %}        
             </ul>
         </div>
         <div class="col">
             <form action="" method="post" novalidate>
                 {{ form.hidden_tag() }}
-                {{ form.note_content.label() }}
                 {{ form.note_content(class="form-control", placeholder="Your note's content") }}<br>
     
                 {{ form.submit(class="form-control") }}
